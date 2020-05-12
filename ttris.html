@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Senet GAMEGIRL-TTRIS</title>
+		<link rel="icon" href="img/gg.png">
+		<meta name="viewport" content="width=device-width, minimum-scale=1">
+		<link rel="stylesheet" href="css/styles.css">
+		<script type="text/javascript" src="js/senet.gamegirl.js"></script>
+		<script type="text/javascript" src="js/senet.gamegirl.event.js"></script>		
+		<script type="text/javascript" src="js/senet.gamegirl.efeyson.js"></script>		
+		<script type="text/javascript" src="js/senet.gamegirl.canvas.js"></script>		
+		<script type="text/javascript" src="js/juego.js"></script>		
+	</head>
+	<body style="font-family: gamegirl;">
+		<audio id="intro">
+		  <source src="sonidos/start.mp3" type="audio/mpeg">
+		</audio>
+		<audio id="menu">
+		  <source src="sonidos/menu.mp3" type="audio/mpeg">
+		</audio>
+		<audio id="mov">
+		  <source src="sonidos/mov.mp3" type="audio/mpeg">
+		</audio>
+		<audio id="lvup">
+		  <source src="sonidos/lvup.mp3" type="audio/mpeg">
+		</audio>
+		<audio id="original">
+		  <source src="sonidos/original.mp3" type="audio/mpeg">
+		</audio>
+		<audio id="senet">
+		  <source src="sonidos/senet.mp3" type="audio/mpeg">
+		</audio>
+		<div class="consola">
+			<div class="cabecera">
+				<div class="leftpart sombra"></div>
+				<div id="startgamegirl" class="centerpart sombra">
+					<div id="onoffbtn" class="button off"></div>
+					<div class="onoff">						
+						<span class="letrasonoff">OFF&lt;&gt;ON</span>
+						<span class="sombraspan">OFF&lt;&gt;ON</span>						
+					</div>
+				</div>
+				<div class="rightpart sombra"></div>
+			</div>
+			<div class="cuerpo">
+				<div class="pantall">
+					<div class="cristal">
+						<div class="cristaldos">
+							<div class="bateria">
+								<div id="onoffbat" class="punto off"></div>
+								<div class="letra">BATTERY</div>
+							</div>
+							<div id="divcanvas" class="canvas off">
+								<canvas id="canvas"></canvas>
+								<canvas id="ttris" width="120" height="210" class="contenedor"></canvas>
+							</div>
+						</div>
+					</div>					
+					<div class="nombre">						
+						<span class="spansenet">Senet </span>
+						<span class="spangamegirl">GAME GIRL</span>
+					</div>
+				</div>
+				<div id="btncontenedor" class="botones">
+					<div class="controles">						
+						<div class="lados">
+							<div class="fondocontrol izquierda"><div id="xiz" class="buttonx xizq"></div></div>
+						</div>			
+						<div style="z-index: 1;">
+							<div class="fondocontrol arriba"><div id="yup" class="buttony yar"></div></div>
+							<div class="fondocontrol"><div class="contcirculo"><div class="circulo"></div></div></div>
+							<div class="fondocontrol abajo"><div id="ydo" class="buttony yab"></div></div>
+						</div>
+						<div class="lados">
+							<div class="fondocontrol derecha"><div id="xde" class="buttonx xder"></div></div>
+						</div>
+					</div>
+					<div class="df">
+						<div class="fondoround"><div id="d" class="fondosombra apretado"></div></div>
+						<div class="fondoround"><div id="f" class="fondosombra off"></div></div>
+						<div class="letras"><span class="d">D</span><span class="f">F</span></div>
+					</div>
+					<div class="centrales">
+						<div class="fondopc"><div id="sel" class="btnopc"><span class="opcion">SELECT</span></div></div>
+						<div class="fondopc"><div id="sta" class="btnopc"><span class="opcion">START</span></div></div>
+					</div>
+				</div>
+				<div class="sonido">
+					<div class="audio">
+						<div class="audiobloque first"></div>
+						<div class="audiobloque"></div>
+						<div class="audiobloque"></div>
+						<div class="audiobloque"></div>
+						<div class="audiobloque"></div>
+						<div class="audiobloque"></div>
+					</div>
+				</div>	
+			</div>
+		</div>
+	</body>
+</html>
