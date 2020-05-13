@@ -9,16 +9,18 @@ this.colores = {
 	color : ['#31483f','#858118','#435e50', '#586f3f', "#31483f"]
 }
 
-function dibujar(canv, tipo){
+function dibujar(canv, tipo, eleccion){
 	this.canv = canv;
-	canv.height = 209;
-    canv.width = 242;	
-	this.ctx = canv.getContext("2d");	
+	canv.height = 210;
+    canv.width = 242;
+	this.elec = eleccion;
+	this.ctx = canv.getContext("2d");
+	
 	var i = 0;
 		
 	if(tipo === "intro"){
 		this.intro = setInterval(function(){
-			limpiar();
+			limpiarInterval(false);
 			if(i != 107){
 				setTexto(0, i);
 				i++;				
@@ -53,21 +55,30 @@ function dibujar(canv, tipo){
 	}
 	
 	if(tipo === "juego"){
-		playAudio(5);
-		
-		estado = tipo;
-		
-		
+		setFondoJuego();		
 		ttris();
-		return;
+		setTexto(5, 90);
+		setTexto(6, 110);
+		setTexto(7, 130);
+		estado = tipo;		
+		return this.juego;
+	}
+	
+	if(tipo === "pausa"){
+		
+		estado = tipo;		
+		return ;
 	}
 };
 
 function setTexto(num, posx, fondo){
 	
 	var textos = {
-		texto : ["Senet","dp.estudios", "TTRIS", "d - original", "f - senet      "],
-		tamano : ['32px','10px', "29px", "12px" , "12px"]
+		texto : ["Senet","dp.estudios", "TTRIS","d - original", 
+												"f - senet      ",	"pausado              ",
+																	"d - volver              ", 
+																	"f - menu                  "],
+		tamano : ['32px','10px', "29px", "12px" , "12px", "10px", "10px","10px"]
 	}
 	estilo = num > 1 ? "" : 'bold ';
 	ctx.font = estilo +textos.tamano[num]+' gamegirl';	
@@ -104,6 +115,35 @@ function setFondo(){
 }
 
 function setFondoJuego(){
+	
+	var ejex = [1,7,14,144,151,157, 163];
+	
+	for(var j = 0; j < 7; j++){
+		var width = j == 6 ? 80 : 6;
+		var ejey = 1;
+		var color = undefined;
+		for(var i = 0; i < 30 ; i++){
+			ctx.beginPath();
+			ctx.rect(ejex[j], ejey, width, 10);
+			if(j === 2|| j === 3){
+				color = colores.color[0];
+			} else if(j === 6){
+				color = colores.color[3];
+			} else if(j === 0 || j === 5){ 
+				color = colores.color[(i%2) + 2];
+			} else if(j === 1 || j === 4) {
+				color = colores.color[(i%2) + 1];
+			}
+			ctx.fillStyle = color;
+			ctx.fill();
+			ejey += 7;
+		}
+	}	
+}
+
+function puntuacion(){
+	
+	
 	
 }
 
