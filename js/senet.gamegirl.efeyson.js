@@ -26,37 +26,51 @@ function activarEfectos(){
 
 function playAudio(audio) { 
   
-  var audios = ["intro","menu","mov","lvup","original","senet"];
-  
-  x = document.getElementById(audios[audio]); 
-  
-  if (audio === 0){
+	var audios = ["intro","menu","mov","lvup","original","senet"];
+	
+	if(audio === 3 || audio === 2){
+		m = document.getElementById(audios[audio]);
+		m.play();
+	} else {
+		x = document.getElementById(audios[audio]); 
+	}
+
+	if (audio === 0){
 		x.currentTime = 0.4;
 		x.play(); 
 		x.onended = function() {
 			interval = dibujar(canvas, "menu");
 			return;  
 		}
-	} else {
-		x.play();
+	} else if(audio === 5){
+		x.currentTime = 0.6;
+		x.onended = function() {
+			x.play(); 
+			return;  
+		}
+	} else if(audio === 4 || audio === 1){
+		x.currentTime = 0.1;
+		x.onended = function() {
+			x.play(); 
+			return;  
+		}
 	}
+	return x.play();
 }
 
-function limpiar(){
-	ctx.clearRect(0,0,249,212);
-	return;
-};
-
-function limpiarInterval(){
-	ctx.clearRect(0,0,249,212);
-	clearInterval(interval);
+function limpiarInterval(bol){
+	if(bol){
+		clearInterval(interval);
+	}
+	ctx.clearRect(0,0,249,212);	
 	return;
 }
 
-function menuOpciones(){
+function menuOpciones(num){
 	x.pause();
-	limpiarInterval()
-	interval = dibujar(canvas, "juego");
+	playAudio(num);
+	limpiarInterval(true);
+	interval = dibujar(canvas, "juego");	
 	return;
 }
 
