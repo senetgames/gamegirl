@@ -54,7 +54,7 @@ start((function(){
 			
 		}else if(estado == "juego" && controlbtn){
 			controles(0, targetId);
-		}else if(estado == "juego" && controlbtn){
+		}else if(estado == "pausado" && controlbtn){
 			if(targetId === "d" || targetId === "start"){				
 				estado = "juego";
 				pausar();
