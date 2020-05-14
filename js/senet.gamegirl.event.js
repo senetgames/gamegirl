@@ -6,7 +6,7 @@
 //eventos
 
 start((function(){
-	console.warn("audio, video, disco!");
+	console.warn("GameGirl Ttris por Alain Forton para dp.estudios!");
 	
 	var controlbtn = false;
 	var start = document.getElementById("startgamegirl");	
