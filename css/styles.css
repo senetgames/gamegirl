@@ -452,8 +452,57 @@ span.sombraspan {
 }
 
 
+@media  all and (max-width: 450px){
 
-
-
-
-
+	.consola {
+		display: contents;
+		height: 100%;
+		width: 100%;
+	}
+	.cabecera {
+		width: 100%;
+	}
+	.cuerpo {
+		height: 100%;
+		width: 100%;
+	}
+	.sonido{
+		display:none;
+	}
+	.spansenet {
+		font-size: 17px;
+	}
+	.spangamegirl {
+		font-size: 21px;
+	}
+	.botones {
+		transform: scale(0.8);
+		width: 100%;	
+	}
+	.controles {
+		margin-top: -12%;
+		margin-left: 2%;
+	}
+	.cristal {
+		margin-left: 8px;
+		width: 96%;
+	}
+	.bateria {
+		display: none;
+	}
+	.cristaldos {
+		width: 100%;
+	}
+	.canvas {
+		margin: auto;
+	}
+	.df {
+		margin-top: -2%;
+		margin-left: 17%;
+	}
+	.centrales {
+		margin-top: 41%;
+		margin-bottom: 7%;
+	}
+	
+}
