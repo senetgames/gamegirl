@@ -183,7 +183,9 @@ function ttris(){
 			x.pause();
 		} else {
 			canvasttris.style.display = "block";
-			x.play();
+			if(estado != "menu"){
+				x.play();
+			}
 		}
 		
 	}
