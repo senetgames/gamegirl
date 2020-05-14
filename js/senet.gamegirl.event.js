@@ -54,6 +54,19 @@ start((function(){
 			
 		}else if(estado == "juego" && controlbtn){
 			controles(0, targetId);
+		}else if(estado == "juego" && controlbtn){
+			if(targetId === "d" || targetId === "start"){				
+				estado = "juego";
+				pausar();
+				return;
+			}else if(targetId === "f"){
+				estado = "menu";
+				pausar();
+				cancelAnimationFrame(animation);
+				context.clearRect(0,0,120,210);
+				limpiarInterval(true);
+				interval = dibujar(canvas, "menu");
+			}
 		}		
 	},false);
 	
@@ -68,6 +81,19 @@ start((function(){
 			}
 		}else if(estado == "juego" && controlbtn){
 			controles(1, key);
+		}else if(estado == "pausado" && controlbtn){
+			if(key === 68 || key === 32){
+				estado = "juego";
+				pausar();
+				return;
+			}else if(key === 70){
+				estado = "menu";
+				pausar();
+				cancelAnimationFrame(animation);
+				context.clearRect(0,0,120,210);
+				limpiarInterval(true);
+				interval = dibujar(canvas, "menu");
+			}
 		}
 		return;
 	});// 32 para space y start o select
@@ -95,7 +121,8 @@ start((function(){
 		} else if (key === eventoId[control][5]) {
 			rotar(1);
 		} else if (key === eventoId[control][6]) {
-			//pausar();
+			estado = "pausado";
+			pausar();
 			return;
 		} else {
 			return;
