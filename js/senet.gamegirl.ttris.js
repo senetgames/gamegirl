@@ -15,6 +15,13 @@ function ttris(){
 	this.pausado = false;
 	this.colorFondo = '#817c14';
 	
+	this.puntuacion = 0;
+	this.nivel = 1;
+	this.lineas = 0;
+	this.lineasCount = 0;
+	
+	this.stado = false;
+	
 	this.figura = {
 		pos: {
 			x: estiloJuego ? 0 : 5,
@@ -23,32 +30,51 @@ function ttris(){
 		matrix: null,
 		score: 0
 	};
-	this.eleccionEstilo = estiloJuego ? 0 : 12;
+	this.eleccionEstilo = estiloJuego ? 0 : 16;
 	
 	this.colors = [null, '#586f3f', '#435e50', '#586f3f', '#858118', '#31483f', '#586f3f', '#435e50'];
 
 	this.area = createMatrix(12, 21);
 	
 	figuraReset(); 
-	//updateScore();
+	actualizarScore();
 	actualizar();
 
 }
+	function senet() {
+		var columnasCount = 1;
+		
+		arriba: for(var y = 0; y < area.length; ++y){
+			for(var x = 0; x < area[y].length; ++x){
+				if (area[y][x]===0){
+					continue arriba;
+					
+				}
+			}		
+			var row = area.splice(y, 1)[0].fill(0);
+			area.push(row);
+			--y;
+			figura.score += columnasCount * 10;
+			columnasCount *= 2;
+			lineasCount++;
+		}
+	}
 	function arenaSweep() {
 		var columnasCount = 1;
-
+		
 		outer: for (var y = area.length - 1; y > 0; --y) {
 			for (var x = 0; x < area[y].length; ++x) {
 				if (area[y][x] === 0) {
 					continue outer;
 				}
 			}
-
 			var row = area.splice(y, 1)[0].fill(0);
-			var eliminar = estiloJuego ? area.unshift(row) : area.push(row);
-			if(estiloJuego){ ++y;}else{ --y;}
+			area.unshift(row);
+			++y;
 			figura.score += columnasCount * 10;
 			columnasCount *= 2;
+			console.log(columnasCount);
+			lineasCount++;
 		}
 	}
 	
@@ -106,7 +132,7 @@ function ttris(){
 					return row.fill(0);
 				});
 			figura.score = 0;
-			//actualizarScore();
+			actualizarScore();
 		}
 	}
 	
@@ -196,8 +222,8 @@ function ttris(){
 			figura.pos.y++;
 			merge(area, figura);
 			figuraReset();
-			arenaSweep();
-			//actualizarScore();
+			senet();
+			actualizarScore();
 		}
 		dropCounter = 0;
 	}
@@ -209,7 +235,7 @@ function ttris(){
 			merge(area, figura);
 			figuraReset();
 			arenaSweep();
-			//actualizarScore();
+			actualizarScore();
 		}
 		dropCounter = 0;
 	}
@@ -268,8 +294,20 @@ function ttris(){
 		animation = requestAnimationFrame(actualizar);
 	}
 
-	function actualizarScore() {
-		document.getElementById('score').innerText = figura.score;
+	function actualizarScore() {		
+	
+		puntuacion = figura.score;
+		var subir = false;
+		if(lineasCount >= 10) {
+			nivel++;
+			subir = true;
+		}else{
+			;subir = false;
+		}
+		lineas = lineasCount >= 10 ? lineasCount - 10 : lineasCount;
+		lineasCount = lineas;
+		velocidad = subir ? velocidad-100 : velocidad;
+		puntuaciones();
 	}
 
 	var startScale = true;	
