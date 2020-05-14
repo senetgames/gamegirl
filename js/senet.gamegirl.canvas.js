@@ -60,6 +60,10 @@ function dibujar(canv, tipo, eleccion){
 		setTexto(5, 90);
 		setTexto(6, 110);
 		setTexto(7, 130);
+		setTexto(8,30);
+		setTexto(9,100);
+		setTexto(10,130);
+		puntuaciones();
 		estado = tipo;		
 		return this.juego;
 	}
@@ -71,14 +75,36 @@ function dibujar(canv, tipo, eleccion){
 	}
 };
 
+function puntuaciones(){
+	
+	var actual = [puntuacion , nivel , lineas];
+	
+	var posiciony = [45, 115, 145];
+	
+	for(var i = 0; i < actual.length; i++){
+		
+		ctx.beginPath();
+		ctx.rect(180, posiciony[i] - 10, 70, 10);
+		ctx.fillStyle = '#586f3f';
+		ctx.fill();
+		
+		ctx.font = '11px gamegirl';	
+		ctx.fillStyle = '#31483f';	
+		ctx.fillText(actual[i], 185, posiciony[i]);		
+	}	
+	return;	
+}
+
 function setTexto(num, posx, fondo){
 	
 	var textos = {
 		texto : ["Senet","dp.estudios", "TTRIS","d - original", 
 												"f - senet      ",	"pausado              ",
 																	"d - volver              ", 
-																	"f - menu                  "],
-		tamano : ['32px','10px', "29px", "12px" , "12px", "10px", "10px","10px"]
+																	"f - menu                  ", 	"                                         Score", 
+																									"                                         Nivel", 
+																									"                                        Lineas"],
+		tamano : ['32px','10px', "29px", "12px" , "12px", "10px", "10px","10px", "8px", "8px", "8px"]
 	}
 	estilo = num > 1 ? "" : 'bold ';
 	ctx.font = estilo +textos.tamano[num]+' gamegirl';	
